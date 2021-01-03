@@ -1,0 +1,13 @@
+{"Name":"Player","Position":{"X":2.7515501976013185,"Y":0.6158682107925415,"Z":2.4499974250793459},"IsEnabled":true}
+{"Name":"GoodBonus","Position":{"X":12.0,"Y":0.5658902525901794,"Z":16.0},"IsEnabled":true}
+{"Name":"GoodBonus","Position":{"X":4.0,"Y":0.7768391966819763,"Z":12.0},"IsEnabled":true}
+{"Name":"GoodBonus","Position":{"X":4.0,"Y":0.35857099294662478,"Z":4.0},"IsEnabled":true}
+{"Name":"GoodBonus","Position":{"X":8.0,"Y":0.3060750365257263,"Z":8.0},"IsEnabled":true}
+{"Name":"GoodBonus","Position":{"X":8.0,"Y":0.3656230568885803,"Z":4.0},"IsEnabled":true}
+{"Name":"BadBonus","Position":{"X":16.0,"Y":2.3628828525543215,"Z":4.0},"IsEnabled":true}
+{"Name":"BadBonus","Position":{"X":16.0,"Y":2.3628828525543215,"Z":8.0},"IsEnabled":true}
+{"Name":"BadBonus","Position":{"X":4.0,"Y":2.3628828525543215,"Z":8.0},"IsEnabled":true}
+{"Name":"DeadBonus","Position":{"X":0.0,"Y":2.3628828525543215,"Z":16.0},"IsEnabled":true}
+{"Name":"Booster","Position":{"X":4.0,"Y":0.3154599070549011,"Z":16.0},"IsEnabled":true}
+{"Name":"Booster","Position":{"X":12.0,"Y":0.5525369048118591,"Z":0.0},"IsEnabled":true}
+{"Name":"Booster","Position":{"X":4.0,"Y":0.8177990317344666,"Z":0.0},"IsEnabled":true}
