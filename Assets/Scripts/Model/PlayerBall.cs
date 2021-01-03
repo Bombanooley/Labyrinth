@@ -60,6 +60,10 @@ namespace Labyrinth
             _isSlowed = false;
         }
 
+        public MementoPlayer Save()
+        {
+            return new MementoPlayer(transform.position, transform.rotation);
+        }
     }
 
 }

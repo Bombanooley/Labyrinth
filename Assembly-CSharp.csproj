@@ -103,6 +103,10 @@
     <Compile Include="Assets\Scripts\Saving\BinaryData.cs" />
     <Compile Include="Assets\Scripts\Saving\Crypto.cs" />
     <Compile Include="Assets\Scripts\Saving\JsonData.cs" />
+    <Compile Include="Assets\Scripts\Saving\Memento.cs" />
+    <Compile Include="Assets\Scripts\Saving\MementoGameController.cs" />
+    <Compile Include="Assets\Scripts\Saving\MementoInteractiveObject.cs" />
+    <Compile Include="Assets\Scripts\Saving\MementoPlayer.cs" />
     <Compile Include="Assets\Scripts\Saving\SaveDataRepository.cs" />
     <Compile Include="Assets\Scripts\Saving\SavedData.cs" />
     <Compile Include="Assets\Scripts\Saving\Seed.cs" />

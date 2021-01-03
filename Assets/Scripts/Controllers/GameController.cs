@@ -42,6 +42,7 @@ namespace Labyrinth
         private CameraController _mainCamera;
         private MiniMapController _minimap;
         private LabyrinthGenerator _labyrinthGenerator;
+        private SaveDataRepository _saveDataRepository;
 
         private int _rows;
         private int _columns;
@@ -76,6 +77,7 @@ namespace Labyrinth
             InitState(_seed);
 
             Reference reference = new Reference();
+            _saveDataRepository = new SaveDataRepository();
             _executeObjects = new ListExecuteObjects();
             _IOPositions = new List<Vector3>();
             _saveObjects = new List<GameObject>();
@@ -121,6 +123,11 @@ namespace Labyrinth
 
         private void Update()
         {
+            if (_inputController.isSaved)
+            {
+                _inputController.isSaved = false;
+                SaveGame();
+            }
             if(_inputController.isSeedChanged)
             {
                 _inputController.isSeedChanged = false;
@@ -142,7 +149,20 @@ namespace Labyrinth
             WinLooseCheck();
         }
 
-        public void Reload(int seed)
+        private void SaveGame()
+        {
+            List<IMemento> list = new List<IMemento>();
+            list.Add(Save());
+            list.Add(_player.Save());
+            foreach (var item in _executeObjects)
+            {
+                if (item is IMemento)
+                    list.Add(item as IMemento);
+            }
+            _saveDataRepository.Save(list);
+        }
+
+        private void Reload(int seed)
         {
             Reference reference = new Reference();
 
@@ -167,14 +187,14 @@ namespace Labyrinth
 
         }
 
-        public void ClearLevel()
+        private void ClearLevel()
         {
             ClearList(ref _saveObjects);
             ClearList(ref _IOPositions);
             _executeObjects.Reload();
         }
 
-        public void ClearList<T> (ref List<T> list)
+        private void ClearList<T> (ref List<T> list)
         {
             if (list.Count == 0)
                 return;
@@ -243,7 +263,7 @@ namespace Labyrinth
             _desireScore = (int)goodBonusCount;
         }
 
-        public void CreateBonus (InteractiveObject obj, string name)
+        private void CreateBonus (InteractiveObject obj, string name)
         {
             bool _isPlaced = false;
             do
@@ -296,7 +316,7 @@ namespace Labyrinth
             _saveObjects.Add(temp.gameObject);
         }
 
-        public void LoadSpawnObjects()
+        private void LoadSpawnObjects()
         {
             for (int i = 0; i < _saveObjects.Count; i++)
             {
@@ -324,20 +344,26 @@ namespace Labyrinth
             _executeObjects.Reload();
         }
 
-        public void Restart() => _gameEnding.RestartButton();
+        public MementoGameController Save()
+        {
+            return new MementoGameController(_seed, _rows, _columns, Score, _goodBonusRate,
+                _badBonusRate, _deadBonusRate, _boosterRate);
+        }
 
-        public void ExitGame() => _gameEnding.ExitGame();
+        private void Restart() => _gameEnding.RestartButton();
 
-        public void DisplayScore(int point)
+        private void ExitGame() => _gameEnding.ExitGame();
+
+        private void DisplayScore(int point)
         {
             Score += point;
             _displayScore.Display(Score, DesireScore);
             if (Score >= DesireScore) _isWin = true; 
         }
 
-        public void Loose() => _isLoose = true;
+        private void Loose() => _isLoose = true;
 
-        public void WinLooseCheck()
+        private void WinLooseCheck()
         {
             if (_isWin)
             {
@@ -357,13 +383,13 @@ namespace Labyrinth
             }
         }
 
-        public void ShakeCamera()
+        private void ShakeCamera()
         {
             _isShaking = true;
             Invoke(nameof(StopShaking), 0.5f);
         }
 
-        public void StopShaking()
+        private void StopShaking()
         {
             _isShaking = false;
             _mainCamera.StopShaking();

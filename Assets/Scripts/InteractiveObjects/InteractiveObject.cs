@@ -57,5 +57,10 @@ namespace Labyrinth
         {
             return name.CompareTo(other.name);
         }
+
+        public MementoInteractiveObject Save()
+        {
+            return new MementoInteractiveObject(transform.position, transform.rotation, IsInteractable);
+        }
     }
 }

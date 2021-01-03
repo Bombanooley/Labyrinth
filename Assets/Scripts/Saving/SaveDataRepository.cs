@@ -24,7 +24,7 @@ namespace Labyrinth
         public SaveDataRepository()
         {
             _seedData = new JsonData<Seed>();
-            _data = new JsonData<SavedData>();
+            _data = new JsonData<IMemento>();
             _dataList = new JsonData<List<SavedData>>();
 
             _path = Path.Combine(Application.dataPath, _folderName);
@@ -43,6 +43,24 @@ namespace Labyrinth
         //    //_data.Save(savePlayer, Path.Combine(_path, _fileName));
         //}
 
+        public void Save (List<IMemento> list)
+        {
+            if (!Directory.Exists(Path.Combine(_path)))
+                Directory.CreateDirectory(_path);
+
+            List<SavedData> save = new List<SavedData>();
+
+            foreach (var item in list)
+            {
+                save.Add(new SavedData
+                {
+                    Position = item.transform.position,
+                    Name = item.name,
+                    IsEnabled = true
+                });
+            }
+            _dataList.Save(save, Path.Combine(_path, _fileName));
+        }
         public void Save(List<GameObject> saveObjects)
         {
             if (!Directory.Exists(Path.Combine(_path)))

@@ -11,7 +11,7 @@ namespace Labyrinth
 
     public interface IData
     {
-        void Save(List<SavedData> data, string path = null);
+        IData Save(List<SavedData> data, string path = null);
 
         void Save(Seed data, string path = null);
 

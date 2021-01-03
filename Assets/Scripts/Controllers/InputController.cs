@@ -22,6 +22,7 @@ namespace Labyrinth
         public Seed seed;
         public int seedInt;
         public bool isSeedChanged;
+        public bool isSaved;
 
 
 
@@ -33,6 +34,7 @@ namespace Labyrinth
             _saveObjects = saveObjects;
             _pauseCanvas = pauseUI;
             this.seed = new Seed(seed);
+            isSaved = false;
         }
 
         public void Execute()
@@ -46,8 +48,9 @@ namespace Labyrinth
 
             if (Input.GetKeyDown(_savePlayer))
             {
-                _saveDataRepository.SaveSeed(seed);
-                _saveDataRepository.Save(_saveObjects);
+                isSaved = true;
+                //_saveDataRepository.SaveSeed(seed);
+                //_saveDataRepository.Save(_saveObjects);
                 //_saveDataRepository.Save(_player);
             }
             if (Input.GetKeyDown(_loadPlayer))
